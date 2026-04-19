@@ -1,6 +1,6 @@
-# Open Generative AI — Open-Source Alternative to Higgsfield AI, Freepik, Krea, Openart AI
+# Open Generative AI — Uncensored Open-Source Alternative to Higgsfield AI, Freepik, Krea, Openart AI
 
-> **The free, open-source alternative to Higgsfield AI, Freepik, Krea, Openart AI.** Generate AI images and videos using 200+ state-of-the-art models — without the closed ecosystem or subscription fees.
+> **The free, open-source, unrestricted alternative to Higgsfield AI, Freepik, Krea, Openart AI.** Generate AI images and videos using 200+ state-of-the-art models — no content filters, no closed ecosystem, no subscription fees.
 
 ## 🌐 Try it Online — No Install Required
 
@@ -9,6 +9,8 @@
 Use all four studios (Image, Video, Lip Sync, Cinema) directly in your browser — no Node.js, no setup. Sign up for a free account to start generating. The hosted version is always up to date with the latest models.
 
 **Community:** Join [Discord](https://discord.gg/sqFYv8ugND) for discussions and support
+
+**Follow** the [creator](https://x.com/matchaman11) for updates
 
 **Happy Horse top video model coming soon:** Follow [Happy Horse AI](https://github.com/Anil-matcha/HappyHorse-1.0-API) for updates   
 
@@ -23,6 +25,7 @@ One-click installers — no Node.js or terminal required.
 | macOS Apple Silicon (M1/M2/M3/M4) | [Open Generative AI-1.0.0-arm64.dmg](https://github.com/Anil-matcha/Open-Generative-AI/releases/download/v1.0.0/Open.Generative.AI-1.0.0-arm64.dmg) |
 | macOS Intel (x64) | [Open Generative AI-1.0.0.dmg](https://github.com/Anil-matcha/Open-Generative-AI/releases/download/v1.0.0/Open.Generative.AI-1.0.0.dmg) |
 | Windows (x64 + ARM64) | [Open Generative AI Setup 1.0.0.exe](https://github.com/Anil-matcha/Open-Generative-AI/releases/download/v1.0.0/Open.Generative.AI.Setup.1.0.0.exe) |
+| Linux (Ubuntu x64) | Build locally with `npm run electron:build:linux` |
 
 All releases: [github.com/Anil-matcha/Open-Generative-AI/releases](https://github.com/Anil-matcha/Open-Generative-AI/releases)
 
@@ -56,13 +59,56 @@ Windows SmartScreen may show a warning because the installer is not code-signed:
 
 The app will install silently to `%LocalAppData%` with a Start Menu shortcut.
 
+### Ubuntu / Linux Installation
+
+Linux artifacts are available when building with Electron Builder:
+
+```bash
+# Build Linux installers (AppImage + .deb)
+npm run electron:build:linux
+```
+
+Generated files are written to the `release/` folder:
+- **AppImage** — portable, run directly after making executable:
+  ```bash
+  chmod +x "release/Open Generative AI-*.AppImage"
+  ./release/Open\ Generative\ AI-*.AppImage
+  ```
+- **.deb** — install on Debian/Ubuntu:
+  ```bash
+  sudo apt install ./release/open-generative-ai_*_amd64.deb
+  ```
+
+If AppImage fails to start on older systems, install `libfuse2`:
+
+```bash
+sudo apt install libfuse2
+```
+
+#### Ubuntu 24.04+ / AppArmor sandbox restriction
+
+Ubuntu 24.04 and later enable a kernel security policy (`apparmor_restrict_unprivileged_userns`) that blocks Chromium's user-namespace sandbox. If the app fails to start silently or crashes immediately, you have two options:
+
+**Option A — Recommended: install the `.deb` instead.**
+The `.deb` package ships an AppArmor profile that grants the required permission automatically on install with no system-wide changes.
+
+**Option B — Temporary system fix (AppImage users):**
+```bash
+sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
+```
+This lasts until next reboot. To make it permanent:
+```bash
+echo 'kernel.apparmor_restrict_unprivileged_userns=0' | sudo tee /etc/sysctl.d/99-userns.conf
+```
+
 ---
 
-Open Generative AI is an open-source AI image, video, cinema, and lip sync studio that brings creative workflows to everyone. Powered by [Muapi.ai](https://muapi.ai), it supports text-to-image, image-to-image, text-to-video, image-to-video, and audio-driven lip sync generation across models like Flux, Nano Banana, Midjourney, Kling, Sora, Veo, Seedream, Infinite Talk, LTX Lipsync, Wan 2.2, and more — all from a sleek, modern interface you can self-host and customize.
+Open Generative AI is a free, uncensored, open-source AI image, video, cinema, and lip sync studio that brings unrestricted creative workflows to everyone. No content filters, no prompt rejections, no guardrails — just full creative freedom. Powered by [Muapi.ai](https://muapi.ai), it supports text-to-image, image-to-image, text-to-video, image-to-video, and audio-driven lip sync generation across models like Flux, Nano Banana, Midjourney, Kling, Sora, Veo, Seedream, Infinite Talk, LTX Lipsync, Wan 2.2, and more — all from a sleek, modern interface you can self-host and customize.
 
 **Why Open Generative AI instead of Higgsfield AI, Freepik, Krea AI, Openart AI?**
+- **Uncensored & unrestricted** — no content filters, no nanny guardrails, no prompt rejections
 - **Free & open-source** — no subscription, no vendor lock-in
-- **Self-hosted** — your data stays on your machine
+- **Self-hosted** — your data stays on your machine, full creative control
 - **200+ models** — text-to-image, image-to-image, text-to-video, image-to-video, lip sync
 - **Multi-image input** — feed up to 14 reference images into compatible models
 - **Lip Sync Studio** — animate portraits or sync lips to any audio with 9 dedicated models
@@ -251,6 +297,9 @@ npm run electron:build
 # Windows (NSIS installer — x64 + ARM64)
 npm run electron:build:win
 
+# Linux (AppImage + DEB — x64)
+npm run electron:build:linux
+
 # Both platforms in one pass
 npm run electron:build:all
 ```
@@ -327,6 +376,8 @@ Lip sync jobs use the same two-step pattern: a dedicated `processLipSync()` meth
 | | Other providers | Open Generative AI |
 | :--- | :--- | :--- |
 | **Cost** | Subscription-based | Free (open-source) |
+| **Content filters** | Yes — prompts blocked or altered | None — fully uncensored |
+| **Restrictions** | Platform guardrails enforced | Unrestricted creative freedom |
 | **Models** | Proprietary | 200+ open & commercial models |
 | **Multi-image input** | Limited | Up to 14 images per request |
 | **Lip sync** | No | 9 models, image & video modes |
@@ -348,6 +399,6 @@ Built with [Muapi.ai](https://muapi.ai) — the unified API for AI image and vid
 **Deep Dive**: For more details on the "AI Influencer" engine, upcoming "Popcorn" storyboarding features, and the future of this project, read the [full technical overview](https://medium.com/@anilmatcha/).
 
 ---
-*Looking for a free Higgsfield AI, Freepik, Krea, Openart AI alternative? Open Generative AI is an open-source AI image and video generation studio and Higgsfield AI, Freepik, Krea, Openart AI replacement that you can self-host, customize, and extend.*
+*Looking for a free, uncensored Higgsfield AI, Freepik, Krea, Openart AI alternative? Open Generative AI is an open-source, unrestricted AI image and video generation studio — a Higgsfield AI, Freepik, Krea, Openart AI replacement with no content filters that you can self-host, customize, and extend.*
 
 This project is an independent, experimental, and open-source initiative and is not affiliated with, endorsed by, or associated with Higgsfield Inc., Freepik, Krea AI, OpenArt AI, or any of their respective companies, products, or services. Any references to third-party platforms, models, or technologies are made solely for interoperability, benchmarking, research, or educational purposes. All trademarks, logos, and brand names are the property of their respective owners. If any content in this repository creates confusion or raises concerns, please contact us and we will promptly review and address it.
