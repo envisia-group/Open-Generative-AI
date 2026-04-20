@@ -52,6 +52,11 @@ export class MuapiClient {
             finalPayload.quality = params.quality;
         }
 
+        // Thinking level (Nano Banana 2 family)
+        if (params.thinking_level) {
+            finalPayload.thinking_level = params.thinking_level;
+        }
+
         // Image-to-Image
         if (params.image_url) {
             finalPayload.image_url = params.image_url;
@@ -261,6 +266,7 @@ export class MuapiClient {
         if (params.aspect_ratio) finalPayload.aspect_ratio = params.aspect_ratio;
         if (params.resolution) finalPayload.resolution = params.resolution;
         if (params.quality) finalPayload.quality = params.quality;
+        if (params.thinking_level) finalPayload.thinking_level = params.thinking_level;
 
         console.log('[Muapi] I2I Request:', url);
         console.log('[Muapi] I2I Payload:', finalPayload);

@@ -2047,6 +2047,14 @@ export const t2iModels = [
         "description": "Whether to use Google Search for prompt enhancement.",
         "default": false
       },
+      "thinking_level": {
+        "enum": ["minimal", "high"],
+        "title": "Thinking Level",
+        "name": "thinking_level",
+        "type": "string",
+        "description": "Reasoning depth. Use 'high' for better fidelity to product reference images; slower and costlier.",
+        "default": "minimal"
+      },
       "output_format": {
         "enum": ["jpg", "png"],
         "title": "Output Format",
@@ -4753,6 +4761,14 @@ export const i2iModels = [
         "type": "boolean",
         "description": "Whether to use Google Search for prompt enhancement.",
         "default": false
+      },
+      "thinking_level": {
+        "enum": ["minimal", "high"],
+        "title": "Thinking Level",
+        "name": "thinking_level",
+        "type": "string",
+        "description": "Reasoning depth. Use 'high' for better fidelity to product reference images; slower and costlier.",
+        "default": "minimal"
       },
       "output_format": {
         "enum": ["jpg", "png"],
