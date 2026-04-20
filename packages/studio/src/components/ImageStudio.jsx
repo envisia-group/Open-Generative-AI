@@ -738,6 +738,7 @@ export default function ImageStudio({
   const [prompt, setPrompt] = useState("");
   const [uploadedImageUrls, setUploadedImageUrls] = useState([]);
   const [thinkingHigh, setThinkingHigh] = useState(false);
+  const [expandedPrompts, setExpandedPrompts] = useState(() => new Set());
 
   // ── UI state ────────────────────────────────────────────────────────────
   const [dropdownOpen, setDropdownOpen] = useState(null); // 'model' | 'ar' | 'quality' | null
@@ -1065,15 +1066,34 @@ export default function ImageStudio({
                 </div>
 
                 {/* Prompt & Details */}
-                <div className="p-3 bg-black/80 backdrop-blur-sm border-t border-white/5 flex-1 flex flex-col justify-between gap-2">
-                  <p className="text-white/70 text-xs line-clamp-3 leading-relaxed" title={entry.prompt}>
-                    {entry.prompt || "No prompt provided"}
-                  </p>
-                  <div className="flex items-center justify-between mt-1">
-                    <span className="text-[10px] font-bold text-primary px-2 py-0.5 bg-primary/10 rounded border border-primary/20">
-                      {entry.model?.replace("-", " ")}
+                <div className="px-4 pt-3 pb-3.5 bg-black/80 backdrop-blur-sm border-t border-white/5 flex-1 flex flex-col justify-between gap-2">
+                  {(() => {
+                    const key = entry.id || idx;
+                    const isExpanded = expandedPrompts.has(key);
+                    const togglePrompt = (e) => {
+                      e.stopPropagation();
+                      setExpandedPrompts((prev) => {
+                        const next = new Set(prev);
+                        if (next.has(key)) next.delete(key);
+                        else next.add(key);
+                        return next;
+                      });
+                    };
+                    return (
+                      <p
+                        className={`text-white/70 text-xs leading-relaxed cursor-pointer hover:text-white/90 transition-colors ${isExpanded ? "whitespace-pre-wrap" : "line-clamp-3"}`}
+                        onClick={togglePrompt}
+                        title={isExpanded ? "Click to collapse" : "Click to see full prompt"}
+                      >
+                        {entry.prompt || "No prompt provided"}
+                      </p>
+                    );
+                  })()}
+                  <div className="flex items-center justify-between gap-2 mt-1">
+                    <span className="text-[10px] font-bold text-primary px-2 py-0.5 bg-primary/10 rounded border border-primary/20 whitespace-nowrap">
+                      {entry.model?.replace(/-/g, " ")}
                     </span>
-                    <span className="text-[10px] text-white/40">{entry.aspect_ratio}</span>
+                    <span className="text-[10px] text-white/40 shrink-0">{entry.aspect_ratio}</span>
                   </div>
                 </div>
               </div>
