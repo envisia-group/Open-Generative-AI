@@ -405,7 +405,7 @@ function UploadButton({ apiKey, maxImages, onSelect, onClear, initialUrls = [] }
         <div
           ref={panelRef}
           onClick={(e) => e.stopPropagation()}
-          className="absolute z-50 bottom-[calc(100%+8px)] left-0 bg-[#111] rounded-xl p-3 shadow-4xl border border-white/10 w-96"
+          className="absolute z-[60] bottom-[calc(100%+8px)] left-0 bg-black bg-[#111] rounded-xl p-3 shadow-[0_20px_50px_rgba(0,0,0,0.8)] border border-white/20 w-96"
         >
           {/* Header */}
           <div className="flex items-center justify-between px-1 pb-3 mb-2 border-b border-white/5">
@@ -1066,7 +1066,7 @@ export default function ImageStudio({
                 </div>
 
                 {/* Prompt & Details */}
-                <div className="px-4 pt-3 pb-3.5 bg-black/80 backdrop-blur-sm border-t border-white/5 flex-1 flex flex-col justify-between gap-2">
+                <div className="px-5 pt-3 pb-4 bg-black/80 backdrop-blur-sm border-t border-white/5 flex-1 flex flex-col justify-between gap-2">
                   {(() => {
                     const key = entry.id || idx;
                     const isExpanded = expandedPrompts.has(key);
@@ -1201,7 +1201,7 @@ export default function ImageStudio({
                   <div
                     ref={dropdownRef}
                     onClick={(e) => e.stopPropagation()}
-                    className="absolute bottom-[calc(100%+12px)] left-0 z-50 bg-[#0a0a0a] rounded-lg p-3 shadow-2xl border border-white/[0.05] w-[calc(100vw-3rem)] max-w-xs"
+                    className="absolute bottom-[calc(100%+12px)] left-0 z-[60] bg-black bg-[#0a0a0a] rounded-lg p-3 shadow-[0_20px_50px_rgba(0,0,0,0.8)] border border-white/20 w-[calc(100vw-3rem)] max-w-xs"
                   >
                     <ModelDropdown
                       models={currentModels}
@@ -1234,7 +1234,7 @@ export default function ImageStudio({
                 {dropdownOpen === "ar" && (
                   <div
                     onClick={(e) => e.stopPropagation()}
-                    className="absolute bottom-[calc(100%+12px)] left-0 z-50 bg-[#0a0a0a] rounded-md p-3 shadow-2xl border border-white/10 min-w-[160px]"
+                    className="absolute bottom-[calc(100%+12px)] left-0 z-[60] bg-black bg-[#0a0a0a] rounded-md p-3 shadow-[0_20px_50px_rgba(0,0,0,0.8)] border border-white/20 min-w-[160px]"
                   >
                     <SimpleDropdown
                       title="Aspect Ratio"
@@ -1269,7 +1269,7 @@ export default function ImageStudio({
                   {dropdownOpen === "quality" && (
                     <div
                       onClick={(e) => e.stopPropagation()}
-                      className="absolute bottom-[calc(100%+12px)] left-0 z-50 bg-[#0a0a0a] rounded-[1.5rem] p-3 shadow-2xl border border-white/[0.05] min-w-[160px]"
+                      className="absolute bottom-[calc(100%+12px)] left-0 z-[60] bg-black bg-[#0a0a0a] rounded-2xl p-3 shadow-[0_20px_50px_rgba(0,0,0,0.8)] border border-white/20 min-w-[160px]"
                     >
                       <SimpleDropdown
                         title="Resolution"
